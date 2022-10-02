@@ -25,3 +25,9 @@ module.exports = {
   mode: "development"
 }
 ```
+#### 自动清空之前的打包文件
+```js
+output: {
+  clean: true
+}
+```
