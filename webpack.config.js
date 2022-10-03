@@ -37,6 +37,18 @@ module.exports = {
           filename: 'static/media/[hash][ext]'
         }
       },
+      // babel
+      {
+        test: /\.js$/,
+        exclude: /node_modules/, // 排除node_modules
+        use: {
+          loader: "babel-loader",
+          // 也可以写在babel配置文件中，统一管理
+          // options: {
+          //   presets: ["@babel/preset-env"]
+          // }
+        }
+      }
     ]
   },
   plugins: [

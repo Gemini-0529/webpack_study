@@ -56,3 +56,5 @@ eslintConfig: {
 ```
 有可能检测dist文件夹下的文件格式，需要再新增一个 .eslintignore文件
 写入dist 忽略检测 dist 文件夹
+#### babel 将es6代码转译成es5
+> 安装包 npm install -D babel-loader @babel/core @babel/preset-env
