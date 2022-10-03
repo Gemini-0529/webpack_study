@@ -88,3 +88,25 @@ devServer: {
   "build": "webpack --config ./config/webpack.prod.js"
 },
 ```
+#### 提升打包构建速度
+##### HMR
+
+##### oneof
+
+##### include/exclude
+
+##### cache
+> 对 eslint 检查和 babel 编译结果进行缓存
+```js
+{
+  test: /\.js$/,
+  exclude: /node_modules/, // 排除node_modules
+  use: {
+    loader: "babel-loader",
+    options: {
+      cacheDirectory: true, // 开启babel缓存
+      cacheCompression: false,// 不压缩
+    }
+  }
+}
+```
