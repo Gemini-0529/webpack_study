@@ -1,4 +1,7 @@
 const path = require('path')
+const os = require('os')
+const threads = os.cpus().length// cpu核数
+const TerserWebpackPlugin = require('terser-webpack-plugin')
 module.exports = {
   entry: "./index.js",
   output: {
@@ -42,25 +45,38 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/, // 排除node_modules
-        use: {
-          loader: "babel-loader",
-          // 也可以写在babel配置文件中，统一管理
-          // options: {
-          //   presets: ["@babel/preset-env"]
-          // }
-        }
+        use: [
+          {
+            loader: "thread-loader",// 开启多进程
+            options: {
+              works: threads,// 进程数量
+            }
+          },
+          {
+            loader: "babel-loader",
+          }
+        ]
       }
     ]
   },
   plugins: [
     new ESlintPlugin({
       // 检测哪些文件
-      context: path.resolve(__dirname, "../src")
+      context: path.resolve(__dirname, "../src"),
+      threads,// 开启多进程
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "../index.html")
     })
 
   ],
+  optimization: {
+    minimizer: [
+      // 压缩js
+      new TerserWebpackPlugin({
+        parallel: threads
+      })
+    ]
+  },
   mode: "production"
 }

@@ -110,3 +110,25 @@ devServer: {
   }
 }
 ```
+##### threads 多进程
+> 下载包 npm install thread-loader -D
+```js
+const os = require('os')
+const threads = os.cpus().length// cpu核数
+
+{
+  test: /\.js$/,
+  exclude: /node_modules/, // 排除node_modules
+  use: [
+    {
+      loader: "thread-loader",// 开启多进程
+      options: {
+        works: threads,// 进程数量
+      }
+    },
+    {
+      loader: "babel-loader",
+    }
+  ]
+}
+```
