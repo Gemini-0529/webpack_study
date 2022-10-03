@@ -31,3 +31,28 @@ output: {
   clean: true
 }
 ```
+#### 配置eslint
+> 下载包 npm install eslint-webpack-plugin eslint --save-dev
+```js
+// webpack.config.js
+const ESlintPlugin = require('eslint-webpack-plugin')
+plugin: [
+  new ESlintPlugin({
+    // 检测哪些文件
+    context: path.resolve(__dirname, 'src')
+  })
+]
+```
+新增 eslint 配置文件：
+可选文件名：
+1. .eslintrc
+2. .eslintrc.js ✅
+3. .eslintrc.json
+或在package.json中配置：
+```js
+eslintConfig: {
+
+}
+```
+有可能检测dist文件夹下的文件格式，需要再新增一个 .eslintignore文件
+写入dist 忽略检测 dist 文件夹

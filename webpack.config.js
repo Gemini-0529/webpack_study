@@ -40,7 +40,10 @@ module.exports = {
     ]
   },
   plugins: [
-
+    new ESlintPlugin({
+      // 检测哪些文件
+      context: path.resolve(__dirname, "src")
+    })
   ],
   mode: "development"
 }
