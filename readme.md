@@ -58,3 +58,33 @@ eslintConfig: {
 写入dist 忽略检测 dist 文件夹
 #### babel 将es6代码转译成es5
 > 安装包 npm install -D babel-loader @babel/core @babel/preset-env
+#### html
+> 安装包 npm install --save-dev html-webpack-plugin
+```js
+// 以自定义的html文件创建新的html文件
+// 保留原有结构、自动引入打包的js资源
+new HtmlWebpackPlugin({
+  template: path.resolve(__dirname, "index.html")
+})
+```
+#### 开发服务器
+> npm i webpack-dev-server -D
+
+> 启动命令：npx webpack serve
+```js
+devServer: {
+  host: "localhost",
+  port: "3000",
+  open: true,// 是否自动打开浏览器
+}
+```
+开发服务器不会输出资源，在内存中打包 dist为空
+#### 生产环境配置
+> 生产环境不需要 devserver，mode为development   开发环境不需要输出资源到dist，mode为production
+添加运行指令
+```js
+"scripts": {
+  "dev": "webpack serve --config ./config/webpack.dev.js",
+  "build": "webpack --config ./config/webpack.prod.js"
+},
+```

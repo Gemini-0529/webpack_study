@@ -2,7 +2,8 @@ const path = require('path')
 module.exports = {
   entry: "./index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    // 开发模式不需要输出到dist，利用服务器做自动打包
+    path: path.resolve(__dirname, "../dist"),
     filename: "main.js",
     /**
      * 自动清空上次打包的内容（打包前，删除dist文件夹）
@@ -54,8 +55,12 @@ module.exports = {
   plugins: [
     new ESlintPlugin({
       // 检测哪些文件
-      context: path.resolve(__dirname, "src")
+      context: path.resolve(__dirname, "../src")
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "../index.html")
     })
+
   ],
-  mode: "development"
+  mode: "production"
 }
