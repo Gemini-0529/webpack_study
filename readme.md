@@ -132,3 +132,10 @@ const threads = os.cpus().length// cpu核数
   ]
 }
 ```
+#### 减少代码体积
+##### 减少 babel 辅助代码
+babel为编译的每个文件都插入了辅助代码，使代码体积过大
+> npm i @babel/plugin-transform-runtime -D
+```js
+
+```
